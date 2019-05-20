@@ -1,4 +1,5 @@
-import Character from '../models/model.js/index.js'
+import RandomQuestion from "../models/model.js";
+
 
 //Private
 //instanciate api here using axios
@@ -10,13 +11,17 @@ let _api = new axios.create({
 
 
 let _state = {
+    randomQuestions: []
     // example characters: [],
 }
 let _subscribers = {
+    randomQuestions: []
     // example characters: []
 }
 
 function setState(propName, data) {
+    _state[propName] = data
+    _subscribers[propName].forEach(fn => fn())
     //examples :
     // _state[propName] = data
     // _subscribers[propName].forEach(fn => fn())
@@ -29,6 +34,20 @@ export default class CharacterService {
         _subscribers[propName].push(fn)
     }
 
+    get Questions() {
+        return _state.randomQuestions.map(c => new RandomQuestion(c))
+
+    }
+    getapiQuestionAnswer() {
+        _api.get('questionAnswer')
+            .then(response => {
+                let data = response.data.map(rawData => new RandomQuestion(rawData))
+                setState('questionAnswer', data)
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    }
     // example getter get Characters() {
     //     return _state.characters.map(c => new Character(c))
     // }
