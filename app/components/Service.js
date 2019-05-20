@@ -29,12 +29,12 @@ function setState(propName, data) {
 
 
 //Public
-export default class CharacterService {
+export default class QuestionAnswerService {
     addSubscriber(propName, fn) {
         _subscribers[propName].push(fn)
     }
 
-    get Questions() {
+    get QuestionsAnswers() {
         return _state.randomQuestions.map(c => new RandomQuestion(c))
 
     }
