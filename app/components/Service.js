@@ -2,9 +2,9 @@ import Character from '../models/model.js/index.js'
 
 //Private
 //instanciate api here using axios
-// let _api = new axios.create({
-//     baseURL: 'http://hp-api.herokuapp.com/api'
-// })
+let _api = new axios.create({
+    baseURL: 'http://jservice.io/api/random'
+})
 
 
 
