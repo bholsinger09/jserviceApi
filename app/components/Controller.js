@@ -1,4 +1,4 @@
-import CharacterService from "./Service.js/index.js";
+
 import QuestionAnswerService from "./Service.js";
 
 //Private
@@ -28,7 +28,7 @@ function _updateUi() {
 }
 
 //Public
-export default class CharacterController {
+export default class QuestionAnswerController {
     constructor() {
         //register subscribers
         _questionAnswerService.addSubscriber('questionsAnswers', _updateUi)
